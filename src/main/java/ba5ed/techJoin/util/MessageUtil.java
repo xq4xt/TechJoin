@@ -1,30 +1,25 @@
 package ba5ed.techJoin.util;
 
 import ba5ed.techJoin.TechJoin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
-
-import static org.bukkit.ChatColor.*;
 
 public class MessageUtil {
     private final TechJoin plugin;
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public MessageUtil(TechJoin plugin) {
         this.plugin = plugin;
     }
 
     public void sendColoredMessage(Player player, String message) {
-        player.sendMessage(translateAlternateColorCodes('&', message));
+        Component component = miniMessage.deserialize(message);
+        player.sendMessage(component);
     }
 
     public void broadcastColoredMessage(String message) {
-        plugin.getServer().broadcastMessage(translateAlternateColorCodes('&', message));
-    }
-
-    public void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-        player.sendTitle(
-                translateAlternateColorCodes('&', title),
-                translateAlternateColorCodes('&', subtitle),
-                fadeIn, stay, fadeOut
-        );
+        Component component = miniMessage.deserialize(message);
+        plugin.getServer().sendMessage(component);
     }
 }
