@@ -1,0 +1,9 @@
+name: TechJoin
+version: 1.0
+main: ba5ed.techJoin.TechJoin
+api-version: 1.21
+commands:
+     tj:
+          description: Main command for TechJoin plugin
+          usage: /tj <setwelcome|reload>
+          aliases: [techjoin]
